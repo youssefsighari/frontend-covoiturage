@@ -1,0 +1,79 @@
+/* Section avec le fond bleu */
+.blue-section {
+  background-color: #f0f8ff; /* Couleur de fond bleu clair */
+  padding: 40px 20px; /* Espacement autour */
+}
+
+.page-container {
+  display: flex; /* Place le formulaire et l'image côte à côte */
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Largeur maximale */
+  margin: 0 auto; /* Centre le contenu */
+}
+
+.form-container {
+  background-color: #ffffff; /* Fond blanc pour le formulaire */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px; /* Limite la largeur */
+  width: 100%;
+}
+
+.image-container img {
+  max-width: 500px; /* Taille maximale de l'image */
+  width: 100%;
+  height: auto;
+}
+
+/* Section avec le fond blanc */
+.info-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #ffffff; /* Fond blanc */
+}
+
+.info-section h1 {
+  font-size: 45px;
+  color: #003366; /* Couleur principale du titre */
+  margin-bottom: 30px;
+}
+
+.info-cards {
+  display: flex;
+  justify-content: space-between; /* Distribution uniforme des cartes */
+  flex-wrap: wrap; /* Permet un alignement responsive */
+  gap: 10px; /* Espacement entre les cartes */
+}
+
+.info-card {
+  flex: 1;
+  max-width: 300px; /* Limite la largeur des cartes */
+  text-align: left;
+  padding: 10px;
+}
+
+.info-card h3 {
+  font-size: 18px;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+.info-card p {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center; /* Centre le bouton horizontalement */
+  margin-top: 20px; /* Ajoute un espace au-dessus du bouton */
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}

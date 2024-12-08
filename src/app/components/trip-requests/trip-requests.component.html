@@ -1,0 +1,15 @@
+<h1 class="page-title">Mes invitation a covoiturer</h1>
+<div class="content-wrapper">
+    <div *ngFor="let reservation of reservations" class="reservation-card">
+      <h4>{{ reservation.passengerName }}</h4>
+      <p>vous invite a covoiturer</p>
+      <h4>{{ reservation.tripDate | date:'fullDate' }}</h4>
+      <div class="button-container">
+        <button (click)="acceptReservation(reservation.bookingId)" class="accept-button">Accepter</button>
+        <button (click)="refuseReservation(reservation.bookingId)" class="refuse-button">Refuser</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  

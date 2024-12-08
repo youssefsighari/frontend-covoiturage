@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <!-- Bouton pour la navigation mobile -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- Liens avant connexion -->
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a class="nav-link" routerLink="register">Signup</a>
+        </li>
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a class="nav-link" routerLink="login">Signin</a>
+        </li>
+      
+        <!-- Liens après connexion -->
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a class="nav-link" routerLink="home">CarGo</a>
+        </li>
+        
+      </ul>
+    </div>
+
+    <!-- Boutons ajoutés -->
+    <div class="nav-buttons" *ngIf="isAuthenticated">
+      <button class="btn search-btn" routerLink="/Trips">
+        🔍 Rechercher
+      </button>
+      <button class="btn publish-btn" routerLink="/Trip">
+        ➕ Publier un trajet
+      </button>
+    </div>
+
+    <!-- Div pour le profil avec le dropdown -->
+    <div *ngIf="isAuthenticated" class="profile-icon" (click)="toggleDropdown()">
+      <img
+        [src]="profilePhotoUrl || 'assets/default-profile.png'"
+        alt="Profile"
+        class="profile-logo"
+      />
+      <div
+        class="dropdown-menu"
+        [class.show]="isDropdownOpen" 
+        *ngIf="isDropdownOpen"
+      >
+        <ul>
+          <li>
+            <a routerLink="/myTrips">Vos trajet</a>
+          </li>
+          <li>
+            <a routerLink="/requests">Requests</a>
+          </li>
+          <li>
+            <a routerLink="/profile-photo">Profil</a>
+          </li>
+          <li (click)="logout()">Déconnexion</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,58 @@
+<div class="search-container">
+  <h1>Où voulez-vous aller ?</h1>
+  <div class="search-bar">
+    <input type="text" class="search-input" placeholder="Départ" [(ngModel)]="departure">
+    <input type="text" class="search-input" placeholder="Destination" [(ngModel)]="destination">
+    <input type="date" class="search-input" [(ngModel)]="date">
+    <input type="time" class="search-input" [(ngModel)]="time">
+    <button class="btn btn-primary search-btn" (click)="searchTrips()">Rechercher</button>
+  </div>
+</div>
+
+<div class="trip-container" *ngIf="trips.length > 0; else noTrips">
+  <div class="trip-card" *ngFor="let trip of trips">
+
+    <div class="creator-info">
+      <img
+        [src]="trip.customer.profilePhotoUrl"
+        alt="Photo de {{ trip.customer.firstName }}"
+        class="profile-photo"
+        (click)="goToCreatorProfile(trip.customer.id)"
+      />
+      <span class="creator-name">
+        {{ trip.customer.firstName }} {{ trip.customer.lastName }}
+      </span>
+    </div>
+
+    <h3>{{ trip.departure }} ➔ {{ trip.destination }}</h3>
+    <p>Date : {{ trip.date }}</p>
+    <p>Heure : {{ trip.time }}</p>
+    <p>Places disponibles : {{ trip.availableSeats }}</p>
+    <p>Prix par passager : {{ trip.pricePerPassenger }}d</p>
+
+    <button
+      class="btn btn-primary"
+      (click)="reserveSeat(trip.id)"
+      [disabled]="trip.isReserved || trip.availableSeats === 0">
+      Réserver
+    </button>
+
+    <button
+      *ngIf="trip.isReserved"
+      class="btn btn-secondary"
+      (click)="cancelReservation(trip.id)">
+      Annuler la réservation
+    </button>
+
+    <button
+      *ngIf="trip.customer?.id === customerId"
+      class="btn btn-warning"
+      (click)="goToEditTrip(trip.id)">
+      Modifier
+    </button>
+  </div>
+</div>
+
+<ng-template #noTrips>
+  <p>Aucun trajet disponible pour le moment.</p>
+</ng-template>

@@ -1,0 +1,58 @@
+<!-- Section avec le formulaire et l'image (fond bleu) -->
+<div class="blue-section">
+  <div class="page-container">
+    <div class="form-container">
+      
+      <form [formGroup]="tripForm" (ngSubmit)="createTrip()">
+        <div class="form-group">
+          <label for="departure">Départ</label>
+          <input type="text" id="departure" class="form-control" formControlName="departure" />
+        </div>
+        <div class="form-group">
+          <label for="destination">Destination</label>
+          <input type="text" id="destination" class="form-control" formControlName="destination" />
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" class="form-control" formControlName="date" />
+        </div>
+        <div class="form-group">
+          <label for="time">Heure</label>
+          <input type="time" id="time" class="form-control" formControlName="time" />
+        </div>
+        <div class="form-group">
+          <label for="availableSeats">Places disponibles</label>
+          <input type="number" id="availableSeats" class="form-control" formControlName="availableSeats" />
+        </div>
+        <div class="form-group">
+          <label for="pricePerPassenger">Prix par passager</label>
+          <input type="number" id="pricePerPassenger" class="form-control" formControlName="pricePerPassenger" />
+        </div>
+        <div class="button-group">
+          <button type="submit" class="btn btn-primary" [disabled]="tripForm.invalid">Proposer un trajet</button>
+        </div>
+      </form>
+    </div>
+    <div class="image-container">
+      <img src="/assets/images/2photo.jpg" alt="Car image" />
+    </div>
+  </div>
+</div>
+
+<div class="info-section">
+  <h1>Roulez. Partagez. Économisez.</h1>
+  <div class="info-cards">
+    <div class="info-card">
+      <h3>Roulez.</h3>
+      <p>Gardez vos plans ! Prenez la route comme prévu et optimisez les places libres de votre véhicule.</p>
+    </div>
+    <div class="info-card">
+      <h3>Partagez.</h3>
+      <p>Soyez bien accompagné. Partagez votre trajet et un moment de vie avec des voyageurs de tous horizons.</p>
+    </div>
+    <div class="info-card">
+      <h3>Économisez.</h3>
+      <p>Péages, essences, énergies… Divisez l’ensemble des frais avec les autres passagers en toute simplicité.</p>
+    </div>
+  </div>
+</div>

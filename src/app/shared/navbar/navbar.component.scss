@@ -1,0 +1,130 @@
+nav {
+  background-color: #f8f9fa;
+  display: flex;
+
+  .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .profile-icon {
+    position: relative; /* Pour positionner correctement la liste */
+    cursor: pointer;
+
+    .profile-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%; /* Forme circulaire */
+      border: 2px solid #007bff;
+      object-fit: cover;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1); /* Agrandit légèrement au survol */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
+      }
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px; /* Ajuste l'espacement intérieur */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: none; /* Par défaut, masqué */
+
+      /* Agrandir la taille du menu */
+      width: 300px; /* Ajuste la largeur */
+      min-height: 250px; /* Définit une hauteur minimale */
+
+      &.show {
+        display: block; /* Affiche lorsque `isDropdownOpen` est vrai */
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column; /* Aligne les éléments verticalement */
+        align-items: flex-start; /* Force l'alignement à gauche */
+      }
+
+      li {
+        width: 100%; /* Assure que les éléments occupent toute la largeur */
+        text-align: left; /* Aligne le contenu à gauche */
+        padding: 15px; /* Augmente l'espacement pour agrandir visuellement */
+        border-bottom: 1px solid #f0f0f0; /* Ligne de séparation entre les items */
+        cursor: pointer;
+
+        &:last-child {
+          border-bottom: none; /* Pas de ligne de séparation pour le dernier élément */
+        }
+
+        &:hover {
+          background-color: #f0f0f0; /* Couleur de survol */
+        }
+
+        a {
+          text-decoration: none; /* Supprime le soulignement */
+          color: #333; /* Couleur par défaut */
+          font-size: 16px; /* Taille de la police */
+          display: block; /* Force le texte à occuper toute la largeur */
+        }
+
+        a:hover {
+          color: #007bff; /* Texte bleu au survol */
+        }
+      }
+    }
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 15px; /* Espacement entre les boutons */
+  margin-right: 20px;
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff; /* Fond blanc */
+    color: #33caff; /* Bleu clair pour le texte */
+    border: none; /* Suppression de la bordure */
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 14px;
+    
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    i {
+      margin-right: 5px; /* Espace entre l'icône et le texte */
+      font-size: 18px; /* Taille de l'icône */
+    }
+
+    
+
+    &.search-btn {
+      margin-right: 10px;
+    }
+
+    &.publish-btn {
+      margin-right: 0;
+    }
+  }
+}

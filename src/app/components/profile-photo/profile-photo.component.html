@@ -1,0 +1,177 @@
+<div class="profile-container">
+  <!-- Section de la photo et du nom alignés horizontalement -->
+  <div class="profile-header">
+    <!-- Photo de profil -->
+    <div class="profile-photo">
+      <img
+        [src]="profilePhotoUrl || 'assets/default-profile.png'"
+        alt="Photo de profil"
+        class="photo"
+      />
+    </div>
+
+    <!-- Nom de l'utilisateur -->
+    <div class="profile-info">
+      <p class="username">{{ username || 'Utilisateur' }}</p>
+    </div>
+  </div>
+
+  <!-- Boutons d'action -->
+  <input
+    type="file"
+    id="fileInput"
+    (change)="onFileSelected($event)"
+    style="display: none"
+  />
+  <div class="profile-actions">
+    <button class="add-photo-btn" (click)="triggerFileInput()">
+      <span class="icon">+</span> Ajouter une photo de profil
+    </button>
+    <button class="edit-info-btn" (click)="openModal()">Modifier les informations personnelles</button>
+    <button class="edit-password-btn" (click)="openPasswordModal()">Modifier le mot de passe</button>
+    <button class="edit-password-btn" (click)="openMiniBioModal()">
+      <span class="icon">+</span> Ajouter une minibio
+    </button>
+  </div>
+</div>
+
+
+
+<ul class="mini-bios-list">
+  <li
+    *ngFor="let miniBio of miniBios; let i = index"
+    (mouseover)="showDeleteIcon[i] = true"
+    (mouseleave)="showDeleteIcon[i] = false"
+  >
+    <span>{{ miniBio }}</span>
+    <button
+      *ngIf="showDeleteIcon[i]"
+      class="delete-mini-bio-btn"
+      (click)="deleteSpecificMiniBio(miniBio)"
+    >
+      X
+    </button>
+  </li>
+</ul>
+
+<div class="modal" *ngIf="isMiniBioModalOpen">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeMiniBioModal()">X</button>
+    <h2>Les autres membres veulent en savoir plus sur vous ! Que souhaitez-vous leur dire ?</h2>
+    <textarea
+      [(ngModel)]="newMiniBio"
+      placeholder="Quelles sont vos passions ? Pourquoi faire la route avec vous est une bonne idée ?"
+      rows="4"
+    ></textarea>
+    <div class="modal-actions">
+      <button class="save-btn" (click)="saveMiniBio()">Enregistrer</button>
+      <button class="cancel-btn" (click)="closeMiniBioModal()">Annuler</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modale pour afficher ou éditer les informations personnelles -->
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeModal()">X</button>
+    <h2>Informations personnelles</h2>
+
+    <div *ngIf="!isEditing">
+      <p><strong>Prénom:</strong> {{ customerData?.firstName || '-' }}</p>
+      <p><strong>Nom:</strong> {{ customerData?.lastName || '-' }}</p>
+      <p><strong>Email:</strong> {{ customerData?.email || '-' }}</p>
+      <p><strong>Numéro de téléphone:</strong> {{ customerData?.phoneNumber || '-' }}</p>
+      <button (click)="enableEditMode()">Modifier</button>
+    </div>
+
+    <div *ngIf="isEditing">
+      <form (ngSubmit)="saveChanges()">
+        <div>
+          <label for="firstName">Prénom:</label>
+          <input
+            id="firstName"
+            type="text"
+            [(ngModel)]="updatedCustomerData.firstName"
+            name="firstName"
+          />
+        </div>
+        <div>
+          <label for="lastName">Nom:</label>
+          <input
+            id="lastName"
+            type="text"
+            [(ngModel)]="updatedCustomerData.lastName"
+            name="lastName"
+          />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="updatedCustomerData.email"
+            name="email"
+          />
+        </div>
+        <div>
+          <label for="phoneNumber">Numéro de téléphone:</label>
+          <input
+            id="phoneNumber"
+            type="text"
+            [(ngModel)]="updatedCustomerData.phoneNumber"
+            name="phoneNumber"
+          />
+        </div>
+        <div class="modal-buttons">
+          <button type="button" (click)="cancelEdit()">Annuler</button>
+          <button type="submit">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modale pour modifier le mot de passe -->
+<div class="modal password-modal" *ngIf="isPasswordModalOpen">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closePasswordModal()">X</button>
+    <h2>Modifier le mot de passe</h2>
+    <form (ngSubmit)="updatePassword()">
+      <div class="form-group">
+        <label for="newPassword">Nouveau mot de passe</label>
+        <input
+          id="newPassword"
+          type="password"
+          [(ngModel)]="newPassword"
+          name="newPassword"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirmer le mot de passe</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <!-- Afficher un message d'erreur s'il y en a -->
+      <div *ngIf="passwordUpdateError" class="error-message">
+        {{ passwordUpdateError }}
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="save-btn">Enregistrer</button>
+        <button type="button" class="cancel-btn" (click)="closePasswordModal()">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>

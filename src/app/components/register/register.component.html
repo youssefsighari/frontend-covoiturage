@@ -1,0 +1,53 @@
+
+<div class="main-container">
+  <div class="header-banner">
+    <h2>CRÉER UN COMPTE</h2>
+    <p>Vous avez déjà un compte ? <a href="#">Identifiez-vous</a></p>
+  </div>
+
+  <div class="container">
+    
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <input type="text" placeholder="prenom" class="form-control" id="firstName" formControlName="firstName" />
+      </div>
+      
+      <div class="form-group">
+        <input type="text" placeholder="nom" class="form-control" id="lastName" formControlName="lastName" />
+      </div>
+
+      <div class="form-group">
+        <input type="email" placeholder="email" class="form-control" id="email" formControlName="email" />
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <div class="gender-group">
+          <input type="radio" formControlName="gender" value="Male" id="male" />
+          <label for="male">Male</label>
+
+          <input type="radio" formControlName="gender" value="Female" id="female" />
+          <label for="female">Female</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" placeholder="Mot de passe" class="form-control" id="password" formControlName="password" />
+      </div>
+      
+      <div class="form-group">
+        <input type="password" placeholder="Confirmer le mot de passe" class="form-control" id="confirmPassword" formControlName="confirmPassword" />
+      </div>
+
+      <div class="form-group">
+        <input type="text" placeholder="Numero de telephone" class="form-control" id="phoneNumber" formControlName="phoneNumber" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+
+
+

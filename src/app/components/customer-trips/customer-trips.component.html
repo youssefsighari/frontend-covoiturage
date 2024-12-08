@@ -1,0 +1,15 @@
+<div class="trip-container" *ngIf="customerTrips.length > 0; else noTrips">
+    <h2>Your Trips</h2>
+    <div class="trip-card" *ngFor="let trip of customerTrips">
+      <h3>{{ trip.departure }} ➔ {{ trip.destination }}</h3>
+      <p>Date: {{ trip.date }}</p>
+      <p>Time: {{ trip.time }}</p>
+      <p>Available Seats: {{ trip.availableSeats }}</p>
+      <p>Price per Passenger: {{ trip.pricePerPassenger }}€</p>
+    </div>
+  </div>
+  
+  <ng-template #noTrips>
+    <p>You have no trips.</p>
+  </ng-template>
+  
